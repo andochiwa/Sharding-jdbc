@@ -15,6 +15,7 @@
     </parent>
     <modules>
         <module>shardingsphere-jdbc-horizontal</module>
+        <module>shardingsphere-jdbc-vertical</module>
     </modules>
 
     <properties>
