@@ -1,5 +1,6 @@
 package com.github.sharding.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.sharding.entity.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,16 @@ class CourseServiceTest {
             courses.add(course);
         }
         courseService.saveBatch(courses);
+    }
+
+    @Test
+    void get() {
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", 1409515407451475969L);
+        System.out.println(courseService.getOne(wrapper));
+        wrapper.clear();
+        wrapper.eq("id", 1409515409145974786L);
+        System.out.println(courseService.getOne(wrapper));
+
     }
 }

@@ -1,6 +1,6 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
   shardingsphere:
     datasource:
       # 配置数据源
@@ -25,11 +25,9 @@ spring:
             inline:
               sharding-column: id
               algorithm-expression: course_$->{id % 2 + 1} # 按奇偶分片
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/course_sharding?serverTimezone=Japan
-#    username: root
-#    password: root
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+    props:
+      sql:
+        show: true
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
