@@ -30,13 +30,23 @@ class CourseServiceTest {
     }
 
     @Test
-    void get() {
+    void getByTable() {
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
         wrapper.eq("id", 1409515407451475969L);
         System.out.println(courseService.getOne(wrapper));
         wrapper.clear();
         wrapper.eq("id", 1409515409145974786L);
         System.out.println(courseService.getOne(wrapper));
+    }
 
+    @Test
+    void getByDatabase() {
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", 100).eq("id", 1409544227378270210L);
+        System.out.println(courseService.getOne(wrapper));
+
+        wrapper.clear();
+        wrapper.eq("user_id", 101).eq("id", 1409544229198598145L);
+        System.out.println(courseService.getOne(wrapper));
     }
 }

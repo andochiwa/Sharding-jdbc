@@ -1,0 +1,33 @@
+spring:
+#  main:
+#    allow-bean-definition-overriding: true
+  shardingsphere:
+    datasource:
+      # 配置数据源
+      names: db0
+      db0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/course_sharding?serverTimezone=Japan
+        username: root
+        password: root
+    sharding:
+      tables:
+        course:
+          # 指定表分布的情况，配置表在哪个库里，名称是什么
+          actual-data-nodes: db0.course_$->{1..2}
+          # 指定表的主键生成策略
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          # 指定分片策略
+          table-strategy:
+            inline:
+              sharding-column: id
+              algorithm-expression: course_$->{id % 2 + 1} # 按奇偶分片
+    props:
+      sql:
+        show: true
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
