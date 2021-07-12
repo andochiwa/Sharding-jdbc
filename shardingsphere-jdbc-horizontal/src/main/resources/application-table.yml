@@ -1,6 +1,10 @@
 spring:
 #  main:
 #    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/course_sharding?serverTimezone=Japan
+    username: root
+    password: root
   shardingsphere:
     datasource:
       # 配置数据源
@@ -8,9 +12,6 @@ spring:
       db0:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/course_sharding?serverTimezone=Japan
-        username: root
-        password: root
     sharding:
       tables:
         course:
@@ -31,3 +32,4 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
